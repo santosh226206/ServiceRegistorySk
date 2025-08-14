@@ -24,21 +24,21 @@ spring:
         metadata:
           version: 1.0.0
           environment: development
-    discovery:
-      enabled: true
-    service-registry:
-      auto-registration:
-        enabled: true
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health,info
-      base-path: /actuator
-  endpoint:
-    health:
-      show-details: always
-logging:
-  level:
-    org.springframework.cloud.consul: DEBUG
-    com.ecwid.consul: DEBUG
+#    discovery:
+#      enabled: true
+#    service-registry:
+#      auto-registration:
+#        enabled: true
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: health,info
+#      base-path: /actuator
+#  endpoint:
+#    health:
+#      show-details: always
+#logging:
+#  level:
+#    org.springframework.cloud.consul: DEBUG
+#    com.ecwid.consul: DEBUG
