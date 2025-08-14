@@ -1,11 +1,44 @@
 server:
   port: 8761
-eureka:
-  instance:
-    hostname: localhost
-  client:
-    register-with-eureka: false
-    fetch-registry: false
 spring:
   application:
     name: SERVICE-REGISTRY
+  cloud:
+    consul:
+      enabled: true
+      host: localhost
+      port: 8500
+      discovery:
+        enabled: true
+        service-name: ${spring.application.name}
+        prefer-ip-address: true
+        health-check-path: /actuator/health
+        health-check-interval: 15s
+        health-check-timeout: 5s
+        instance-id: ${spring.application.name}:${server.port}
+        register: true
+        deregister: true
+        tags:
+          - service-registry
+          - spring-boot
+        metadata:
+          version: 1.0.0
+          environment: development
+    discovery:
+      enabled: true
+    service-registry:
+      auto-registration:
+        enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: always
+logging:
+  level:
+    org.springframework.cloud.consul: DEBUG
+    com.ecwid.consul: DEBUG
